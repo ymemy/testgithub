@@ -2,6 +2,12 @@ from transformers import MarianMTModel, MarianTokenizer
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import random
 
+"""
+Tokenizer converts raw text into tokens that the model can process.
+Model processes the tokens and generates an output (e.g., translation, text generation).
+
+"""
+
 def load_french_sentences():
     """Loads french statements"""
     tokenizer = AutoTokenizer.from_pretrained("dbddv01/gpt2-french-small")
@@ -32,7 +38,7 @@ def load_german_sentences():
     model = AutoModelForCausalLM.from_pretrained("stefan-it/german-gpt2-larger")
     return(tokenizer,model)
 
-
+    
 def load_translation_model():
 
     model_name = "Helsinki-NLP/opus-mt-mul-en"
@@ -53,6 +59,18 @@ def translate_to_english(text, tokenizer, model):
     except Exception as e:
         return f"Error in translation: {str(e)}"
 
+def generate_sentences(language):
+    condition = False
+    while not condition:
+        if language.lower not in ['french','spanish','japanese','mandarin','german']:
+            language = input("Please enter a valid language: ")
+        else:
+            condition = True
+
+    if language.lower == "french":
+        tokenizer,model = load_french_sentences()
+
+    
 # Chatbot function
 def chatbot():
     # print("Welcome to the Translator Chatbot!")
