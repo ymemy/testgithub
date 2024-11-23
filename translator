@@ -28,22 +28,22 @@ def chatbot():
     # Load the translation model
     tokenizer, model = load_translation_model()
 
-    # while True:
-    #     user_input = input("\nYou: ")
-    #     if user_input.lower() == 'exit':
-    #         print("Chatbot: Goodbye!")
-    #         break
+    while True:
+        user_input = input("\nYou: ")
+        if user_input.lower() == 'exit':
+            print("Chatbot: Goodbye!")
+            break
         
-    #     # Translate the user's message to English
-    #     translated_message = translate_to_english(user_input, tokenizer, model)
-    #     print(f"Chatbot (Translated to English): {translated_message}")
+        # Translate the user's message to English
+        translated_message = translate_to_english(user_input, tokenizer, model)
+        print(f"Chatbot (Translated to English): {translated_message}")
 
-    file_name = 'french_text'
-    with open(file_name, 'r') as f:
-        content = f.read()
+    # file_name = 'french_text'
+    # with open(file_name, 'r') as f:
+    #     content = f.read()
     
-    translated_message = translate_to_english(content, tokenizer, model) 
-    print(f"Translation into English: {translated_message}")
+    # translated_message = translate_to_english(content, tokenizer, model) 
+    # print(f"Translation into English: {translated_message}")
 
 # Run the chatbot
 if __name__ == "__main__":
