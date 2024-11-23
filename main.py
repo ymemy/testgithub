@@ -18,7 +18,7 @@ GRAY = (200, 200, 200)
 def main():
     # Initialize Pygame
     pygame.init()
-    screen = pygame.display.set_mode((800, 600))
+    screen = pygame.display.set_mode((screen_width, screen_height))
     pygame.display.set_caption("Translation Game")
     
     # Initialize fonts
@@ -51,12 +51,36 @@ def main():
     pygame.quit()
 
 def show_instructions(screen, font_title, font_subtitle):
-    """Temporary placeholder for instructions screen."""
+    """Display the instructions screen."""
+    # Clear the screen
     screen.fill((255, 255, 255))
-    text = font_title.render("Instructions Placeholder", True, (0, 0, 0))
-    screen.blit(text, (screen.get_width() // 2 - text.get_width() // 2, screen.get_height() // 2))
+    
+    # Render the title
+    text_title = font_title.render("Instructions", True, (0, 0, 0))
+    screen.blit(text_title, (screen.get_width() // 2 - text_title.get_width() // 2, 50))  # Positioned at the top
+    
+    # List of instructions
+    instructions = [
+        "1. Each player gets 1 minute to play.",
+        "2. Translate as many words as possible correctly.",
+        "3. Press ENTER to submit your answer.",
+        "4. Each correct answer earns you a point.",
+        "5. The player with the most points wins!"
+    ]
+    
+    # Render and display each instruction line
+    y_offset = 150  # Starting Y position for instructions
+    line_spacing = 50  # Space between lines
+    for i, instruction in enumerate(instructions):
+        text = font_subtitle.render(instruction, True, (0, 0, 0))
+        screen.blit(text, (screen.get_width() // 2 - text.get_width() // 2, y_offset + i * line_spacing))
+    
+    # Update the display
     pygame.display.flip()
-    pygame.time.wait(2000)  # Pause for 2 seconds to simulate instructions screen
+    
+    # Wait for user input or timeout
+    pygame.time.wait(10000)  # Wait for 10 seconds before proceeding
+
 
 if __name__ == "__main__":
     main()
