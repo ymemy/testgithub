@@ -1,5 +1,3 @@
-for i in range(5):
-    print(i)
 
 # pour enregistrer les changements
 # Etape 1: git add . 
@@ -8,6 +6,3 @@ for i in range(5):
 # Etape 2: git commit -m '<message indiquant tes modifications>'
 # Etape 3: git push 
 # Les modifications sont publiees dans le repository
-print()
-print("Louis est beau")
-print("hello")
