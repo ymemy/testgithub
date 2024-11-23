@@ -1,5 +1,40 @@
 from transformers import MarianMTModel, MarianTokenizer
+from transformers import AutoTokenizer, AutoModelForCausalLM
+import random
+
+def load_french_sentences():
+    """Loads french statements"""
+    tokenizer = AutoTokenizer.from_pretrained("dbddv01/gpt2-french-small")
+    model = AutoModelForCausalLM.from_pretrained("dbddv01/gpt2-french-small")
+    return(tokenizer,model)
+
+def load_spanish_sentences():
+    """Loads spanish statements"""
+    tokenizer = AutoTokenizer.from_pretrained("DeepESP/gpt2-spanish")
+    model = AutoModelForCausalLM.from_pretrained("DeepESP/gpt2-spanish")
+    return(tokenizer,model)
+
+def load_japanese_sentences():
+    """Loads japanese statements"""
+    tokenizer = AutoTokenizer.from_pretrained("abeja/gpt2-large-japanese")
+    model = AutoModelForCausalLM.from_pretrained("abeja/gpt2-large-japanese")
+    return(tokenizer,model)
+
+def load_mandarin_sentences():
+    """Loads chinese statements"""
+    tokenizer = AutoTokenizer.from_pretrained("uer/gpt2-chinese-cluecorpussmall")
+    model = AutoModelForCausalLM.from_pretrained("uer/gpt2-chinese-cluecorpussmall")
+    return(tokenizer,model)
+
+def load_german_sentences():
+    """Loads german statements"""
+    tokenizer = AutoTokenizer.from_pretrained("stefan-it/german-gpt2-larger")
+    model = AutoModelForCausalLM.from_pretrained("stefan-it/german-gpt2-larger")
+    return(tokenizer,model)
+
+
 def load_translation_model():
+
     model_name = "Helsinki-NLP/opus-mt-mul-en"
     tokenizer = MarianTokenizer.from_pretrained(model_name)
     model = MarianMTModel.from_pretrained(model_name)
