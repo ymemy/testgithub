@@ -40,6 +40,7 @@ def main():
             if result == "start":
                 show_instructions(screen, font_title, font_subtitle)  # Transition to instructions
                 running = False  # Exit the home screen loop
+
         
         # Draw the home screen
         home_screen.draw()

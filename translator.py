@@ -60,17 +60,39 @@ def translate_to_english(text, tokenizer, model):
         return f"Error in translation: {str(e)}"
 
 def generate_sentences(language):
-    condition = False
-    while not condition:
-        if language.lower not in ['french','spanish','japanese','mandarin','german']:
+    """
+    condition = True
+    while condition:
+        if language.lower()not in ['french','spanish','japanese','mandarin','german']:
             language = input("Please enter a valid language: ")
         else:
-            condition = True
-
-    if language.lower == "french":
-        tokenizer,model = load_french_sentences()
-
+            condition = False
+    """
     
+    if language == 'french':
+        tokenizer, model = load_french_sentences()
+
+    elif language == 'spanish':
+        tokenizer, model = load_spanish_sentences()
+    
+    elif language == 'japanese':
+        tokenizer, model = load_japanese_sentences()
+    
+    elif language == 'mandarin':
+
+        tokenizer,model = load_mandarin_sentences()
+    
+    else:
+        tokenizer,model = load_german_sentences()
+
+    input_prompt = f"Please generate a sentence in {language}: "
+    inputs = tokenizer(input_prompt, return_tensors="pt")
+    output = model.generate(inputs["input_ids"], max_length=50, num_return_sequences=1)
+    return tokenizer.decode(output[0], skip_special_tokens=True)
+
+
+generate_sentences('french')
+"""    
 # Chatbot function
 def chatbot():
     # print("Welcome to the Translator Chatbot!")
@@ -100,3 +122,5 @@ def chatbot():
 # Run the chatbot
 if __name__ == "__main__":
     chatbot()
+
+"""
