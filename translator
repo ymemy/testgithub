@@ -1,0 +1,43 @@
+from transformers import MarianMTModel, MarianTokenizer
+
+def load_translation_model():
+    model_name = "Helsinki-NLP/opus-mt-mul-en"
+    tokenizer = MarianTokenizer.from_pretrained(model_name)
+    model = MarianMTModel.from_pretrained(model_name)
+    return tokenizer, model
+
+# Function to translate text to English
+def translate_to_english(text, tokenizer, model):
+    try:
+        # Tokenize the input text
+        inputs = tokenizer(text, return_tensors="pt", padding=True)
+        # Translate the input text
+        translated = model.generate(**inputs)
+        # Decode the translated text
+        output = tokenizer.decode(translated[0], skip_special_tokens=True)
+        return output
+    except Exception as e:
+        return f"Error in translation: {str(e)}"
+
+# Chatbot function
+def chatbot():
+    print("Welcome to the Translator Chatbot!")
+    print("Type 'exit' to end the chat.")
+    print("You can send messages in any language, and I will translate them to English.")
+
+    # Load the translation model
+    tokenizer, model = load_translation_model()
+
+    while True:
+        user_input = input("\nYou: ")
+        if user_input.lower() == 'exit':
+            print("Chatbot: Goodbye!")
+            break
+        
+        # Translate the user's message to English
+        translated_message = translate_to_english(user_input, tokenizer, model)
+        print(f"Chatbot (Translated to English): {translated_message}")
+
+# Run the chatbot
+if __name__ == "__main__":
+    chatbot()
