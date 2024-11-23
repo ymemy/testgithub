@@ -60,30 +60,23 @@ def translate_to_english(text, tokenizer, model):
         return f"Error in translation: {str(e)}"
 
 def generate_sentences(language):
-    """
-    condition = True
-    while condition:
-        if language.lower()not in ['french','spanish','japanese','mandarin','german']:
-            language = input("Please enter a valid language: ")
-        else:
-            condition = False
-    """
-    
-    if language == 'french':
-        tokenizer, model = load_french_sentences()
+    """Generates a sentence in the specified language."""
+    # Language model mapping
+    model_loaders = {
+        'french': load_french_sentences,
+        'spanish': load_spanish_sentences,
+        'japanese': load_japanese_sentences,
+        'mandarin': load_mandarin_sentences,
+        'german': load_german_sentences
+    }
 
-    elif language == 'spanish':
-        tokenizer, model = load_spanish_sentences()
-    
-    elif language == 'japanese':
-        tokenizer, model = load_japanese_sentences()
-    
-    elif language == 'mandarin':
+    # Validate language 
+    language = language.lower()
+    if language not in model_loaders:
+        return f"Unsupported language: {language}"
 
-        tokenizer,model = load_mandarin_sentences()
-    
-    else:
-        tokenizer,model = load_german_sentences()
+    # Load model and tokenizer
+    tokenizer, model = model_loaders[language]()
 
     input_prompt = f"Please generate a sentence in {language}: "
     inputs = tokenizer(input_prompt, return_tensors="pt")
