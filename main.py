@@ -15,17 +15,6 @@ BLACK = (0, 0, 0)
 BLUE = (0, 102, 204)
 GRAY = (200, 200, 200)
 
-def draw_home_screen():
-    screen.fill(BLACK)
-    
-    # Render the title text
-    title_text = font_title.render("Welcome to 'Who is the better translator'?", True, WHITE)
-    screen.blit(title_text, (screen_width // 2 - title_text.get_width() // 2, 100))
-    
-    # Render subtitle or instructions
-    subtitle_text = font_subtitle.render("Press SPACE to read the instructions!", True, WHITE)
-    screen.blit(subtitle_text, (screen_width // 2 - subtitle_text.get_width() // 2, 300))
-
 def main():
     # Initialize Pygame
     pygame.init()

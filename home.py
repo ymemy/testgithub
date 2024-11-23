@@ -19,8 +19,11 @@ class Home:
         self.screen.fill(self.WHITE)
         
         # Render and draw title text
-        title_text = self.font_title.render("Translation Game", True, self.BLUE)
+        title_text = self.font_title.render("Welcome to", True, self.BLACK)
         self.screen.blit(title_text, (self.screen.get_width() // 2 - title_text.get_width() // 2, 100))
+
+        title_text = self.font_title.render("'Who is the better translator'?", True, self.BLACK)
+        self.screen.blit(title_text, (self.screen.get_width() // 2 - title_text.get_width() // 2, 200))
         
         # Draw the button
         pygame.draw.rect(self.screen, self.GRAY, self.button_rect)
