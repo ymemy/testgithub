@@ -81,7 +81,15 @@ def generate_sentences(language):
     input_prompt = f"Please generate a sentence in {language}: "
     inputs = tokenizer(input_prompt, return_tensors="pt")
     output = model.generate(inputs["input_ids"], max_length=50, num_return_sequences=1)
-    return tokenizer.decode(output[0], skip_special_tokens=True)
+    generated_sentence = tokenizer.decode(output[0], skip_special_tokens=True)
 
+    # Translate the sentence to English
+    translation_tokenizer, translation_model = load_translation_model()
+    translated_sentence = translate_to_english(generated_sentence, translation_tokenizer, translation_model)
 
-generate_sentences('french')
+    return generated_sentence, translated_sentence
+
+language = input("Language:")
+generated_sentence, translated_sentence = generate_sentences(language)
+print(f"Generated sentence in {language.capitalize()}: {generated_sentence}")
+print(f"Translated to English: {translated_sentence}")
