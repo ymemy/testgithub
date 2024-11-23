@@ -1,2 +1,10 @@
 for i in range(5):
     print(i)
+
+# pour enregistrer les changements
+# Etape 1: git add . 
+# Cela va ajouter toutes les modifications dans tous les fichiers du repository
+# Les modifications vont etre 'staged'
+# Etape 2: git commit -m '<message indiquant tes modifications>'
+# Etape 3: git push 
+# Les modifications sont publiees dans le repository
