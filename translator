@@ -1,5 +1,4 @@
 from transformers import MarianMTModel, MarianTokenizer
-
 def load_translation_model():
     model_name = "Helsinki-NLP/opus-mt-mul-en"
     tokenizer = MarianTokenizer.from_pretrained(model_name)
