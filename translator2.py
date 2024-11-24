@@ -91,5 +91,5 @@ def generate_sentences(language):
 
 language = input("Language:")
 generated_sentence, translated_sentence = generate_sentences(language)
-print(f"Generated sentence in {language.capitalize()}: {generated_sentence}")
+print(f"Generated sentence {language.capitalize()}: {generated_sentence}")
 print(f"Translated to English: {translated_sentence}")
